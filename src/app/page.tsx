@@ -230,12 +230,12 @@ const Portfolio = () => {
 
           <div className="space-y-6 text-gray-800 mb-16 leading-relaxed">
             <p className="text-base">
-              I'm a developer passionate about creating simple, effective solutions. I believe in clean code, 
+              I&apos;m a developer passionate about creating simple, effective solutions. I believe in clean code, 
               thoughtful design, and building products that make a difference.
             </p>
             <p className="text-base">
-              When I'm not coding, I enjoy exploring new technologies, reading, and spending time outdoors. 
-              I'm always looking for opportunities to learn and grow.
+              When I&apos;m not coding, I enjoy exploring new technologies, reading, and spending time outdoors. 
+              I&apos;m always looking for opportunities to learn and grow.
             </p>
           </div>
 
