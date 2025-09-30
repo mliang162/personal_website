@@ -314,27 +314,31 @@ const Portfolio = () => {
         </section>
     
 
-      {/* Gallery Section */}
-        <section id="gallery" className="px-8 md:px-16 py-24 max-w-6xl">
-          <h2 className="text-3xl font-light text-black mb-16 tracking-tight">Gallery</h2>
-          
-          {gallery.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {gallery.map((photo, index) => (
-                <div 
-                  key={index} 
-                  className="group relative overflow-hidden bg-gray-100 aspect-square cursor-pointer transition-transform duration-300 hover:scale-105 rounded-lg"
-                >
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
-                    loading="lazy"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
+        {/* Gallery Section */}
+          <section id="gallery" className="px-8 md:px-16 py-24 max-w-6xl">
+            <h2 className="text-3xl font-light text-black mb-16 tracking-tight">Gallery</h2>
+            
+            {gallery.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {gallery.map((photo, index) => (
+                  <div 
+                    key={index} 
+                    className="group relative overflow-hidden bg-gray-100 aspect-square cursor-pointer transition-transform duration-300 hover:scale-105 rounded-lg"
+                  >
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
+                      loading="lazy"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const nextElement = target.nextElementSibling as HTMLElement;
+                        if (nextElement) {
+                          nextElement.style.display = 'flex';
+                        }
+                      }}
+                    />
                   <div 
                     className="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-500 text-sm"
                     style={{ display: 'none' }}
