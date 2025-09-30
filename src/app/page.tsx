@@ -49,35 +49,39 @@ const Portfolio = () => {
 
   // Experience data
   const experiences = [
-    {
-      title: "Software Engineering Intern",
-      company: "Amazon",
-      period: "2025",
-      description: "Streamlined catalog data corrections with a centralized dashboard",
-      icon: (
-        <img 
-          src="/logos/amazon_fresh.png" 
-          alt="Amazon Fresh" 
-          className="w-6 h-6 object-contain"
-        />
-      ),
-      achievements: []
-    },
-    {
-      title: "Software Engineering Intern", 
-      company: "NYC DOT",
-      period: "2024",
-      description: "Developed green wave traffic optimization algorithms for Bx10, M10, and Si74 routes",
-      icon: (
-        <img 
-          src="/logos/NYCDOT.svg.png" 
-          alt="NYC DOT" 
-          className="w-6 h-6 object-contain"
-        />
-      ),
-      achievements: []
-    },
-  ];
+  {
+    title: "Software Engineering Intern",
+    company: "Amazon",
+    period: "2025",
+    description: "Streamlined catalog data corrections with a centralized dashboard",
+    icon: (
+      <Image 
+        src="/logos/amazon_fresh.png" 
+        alt="Amazon Fresh" 
+        width={24}
+        height={24}
+        className="w-6 h-6 object-contain"
+      />
+    ),
+    achievements: []
+  },
+  {
+    title: "Software Engineering Intern", 
+    company: "NYC DOT",
+    period: "2024",
+    description: "Developed green wave traffic optimization algorithms for Bx10, M10, and Si74 routes",
+    icon: (
+      <Image 
+        src="/logos/NYCDOT.svg.png" 
+        alt="NYC DOT" 
+        width={24}
+        height={24}
+        className="w-6 h-6 object-contain"
+      />
+    ),
+    achievements: []
+  },
+];
 
   // Projects data
   const projects = [
