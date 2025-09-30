@@ -215,23 +215,23 @@ const Portfolio = () => {
           <h2 className="text-3xl font-light text-black mb-16 tracking-tight">About</h2>
           
           {/* Profile Picture */}
-<div className="flex-shrink-0">
-  <div className="w-32 h-32 bg-gray-200 rounded-lg overflow-hidden">
-    <Image
-      src="/images/profile.jpeg"
-      alt="Matthew Liang"
-      width={128}
-      height={128}
-      className="w-full h-full object-cover"
-      onError={(e) => {
-        const target = e.target as HTMLImageElement;
-        target.style.display = 'none';
-        const nextElement = target.nextElementSibling as HTMLElement;
-        if (nextElement) {
-          nextElement.style.display = 'flex';
-        }
-      }}
-    />
+      <div className="flex-shrink-0">
+        <div className="w-32 h-32 bg-gray-200 rounded-lg overflow-hidden">
+          <Image
+            src="/images/profile.jpeg"
+            alt="Matthew Liang"
+            width={128}
+            height={128}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              const nextElement = target.nextElementSibling as HTMLElement;
+              if (nextElement) {
+                nextElement.style.display = 'flex';
+              }
+            }}
+          />
         <div 
           className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 text-2xl font-medium"
           style={{ display: 'none' }}
