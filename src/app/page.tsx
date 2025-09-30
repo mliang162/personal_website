@@ -111,9 +111,11 @@ const Portfolio = () => {
   ];
   const gallery = [
   {
+    
     src: "/images/nature1.jpeg",
     alt: "Mountain landscape",
     caption: "Snoqualmie Pass"
+    
   },
   {
     src: "/images/nature2.jpeg",
@@ -214,6 +216,8 @@ const Portfolio = () => {
     <Image
       src="/images/profile.jpeg"
       alt="Matthew Liang"
+      width={128}
+      height={128}
       className="w-full h-full object-cover"
       onError={(e) => {
         const target = e.target as HTMLImageElement;
@@ -315,37 +319,37 @@ const Portfolio = () => {
         </section>
     
 
-        {/* Gallery Section */}
-          <section id="gallery" className="px-8 md:px-16 py-24 max-w-6xl">
-            <h2 className="text-3xl font-light text-black mb-16 tracking-tight">Gallery</h2>
-            
-            {gallery.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {gallery.map((photo, index) => (
-                  <div 
-                    key={index} 
-                    className="group relative overflow-hidden bg-gray-100 aspect-square cursor-pointer transition-transform duration-300 hover:scale-105 rounded-lg"
-                  >
+      {/* Gallery Section */}
+        <section id="gallery" className="px-8 md:px-16 py-24 max-w-6xl">
+          <h2 className="text-3xl font-light text-black mb-16 tracking-tight">Gallery</h2>
+
+          {gallery.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {gallery.map((photo, index) => (
+                <div 
+                  key={index} 
+                  className="group relative overflow-hidden bg-gray-100 aspect-square cursor-pointer transition-transform duration-300 hover:scale-105 rounded-lg"
+                >
+                  {/* Relative wrapper required for `fill` */}
+                  <div className="relative w-full h-full">
                     <Image
                       src={photo.src}
                       alt={photo.alt}
-                      className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
+                      fill
+                      sizes="(max-width: 768px) 100vw,
+                            (max-width: 1200px) 50vw,
+                            33vw"
+                      className="object-cover transition-opacity duration-300 group-hover:opacity-90"
                       loading="lazy"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        const nextElement = target.nextElementSibling as HTMLElement;
-                        if (nextElement) {
-                          nextElement.style.display = 'flex';
-                        }
-                      }}
                     />
-                  <div 
-                    className="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-500 text-sm"
-                    style={{ display: 'none' }}
-                  >
+                  </div>
+
+                  {/* Fallback when image fails */}
+                  <div className="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-500 text-sm hidden">
                     Image not found
                   </div>
+
+                  {/* Caption overlay */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/60 to-transparent">
                     <p className="text-sm font-medium">{photo.caption}</p>
                   </div>
@@ -360,7 +364,9 @@ const Portfolio = () => {
               </div>
             </div>
           )}
-        </section>
+</section>
+
+
         </main>
         
       {/* Mobile Overlay */}
