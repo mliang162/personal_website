@@ -1,5 +1,6 @@
 'use client'
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
+import Image from 'next/image';
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('about');
@@ -210,7 +211,7 @@ const Portfolio = () => {
           {/* Profile Picture */}
 <div className="flex-shrink-0">
   <div className="w-32 h-32 bg-gray-200 rounded-lg overflow-hidden">
-    <img
+    <Image
       src="/images/profile.jpeg"
       alt="Matthew Liang"
       className="w-full h-full object-cover"
@@ -325,7 +326,7 @@ const Portfolio = () => {
                     key={index} 
                     className="group relative overflow-hidden bg-gray-100 aspect-square cursor-pointer transition-transform duration-300 hover:scale-105 rounded-lg"
                   >
-                    <img
+                    <Image
                       src={photo.src}
                       alt={photo.alt}
                       className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-90"
