@@ -22,9 +22,10 @@ const Portfolio = () => {
     const galleryData = [
       { src: "/images/lake_serene.jpeg", alt: "Lake Serene", caption: "Lake Serene", id: 0 },
       { src: "/images/mount_si.jpeg", alt: "Mount Si", caption: "Mount Si", id: 1 },
-      { src: "/images/nature1.jpeg", alt: "Nature", caption: "Nature scene", id: 2 },
-      { src: "/images/penn.jpeg", alt: "Penn", caption: "Penn", id: 3 },
+      { src: "/images/cascades_walk.jpeg", alt: "Cascades", caption: "North Cascades", id: 2 },
+      { src: "/images/bushkills.jpeg", alt: "Penn", caption: "Bushkill Falls", id: 3 },
       { src: "/images/rainier.jpeg", alt: "Mount Rainier", caption: "Mount Rainier", id: 5 },
+      { src: "/images/kendall.jpeg", alt: "kendall", caption: "Mount Snoqualmie", id: 6 }
     ];
 
     setGallery(galleryData);
