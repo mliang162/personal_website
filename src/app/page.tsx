@@ -180,7 +180,7 @@ const Portfolio = () => {
           <div className="flex-shrink-0 mb-8">
             <div className="w-32 h-32 bg-gray-200 rounded-lg overflow-hidden">
               <Image
-                src="/images/profiles.jpeg"
+                src="/images/profile.jpeg"
                 alt="Matthew Liang"
                 width={128}
                 height={128}
