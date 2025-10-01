@@ -178,7 +178,7 @@ const Portfolio = () => {
           
           {/* Profile Picture */}
           <div className="flex-shrink-0 mb-8">
-            <div className="w-32 h-32 bg-gray-200 rounded-lg overflow-hidden">
+            <div className="w-48 h-48 bg-gray-200 rounded-lg overflow-hidden">
               <Image
                 src="/images/profile.jpeg"
                 alt="Matthew Liang"
@@ -192,7 +192,7 @@ const Portfolio = () => {
 
           <div className="space-y-6 text-gray-800 mb-16 leading-relaxed">
             <p className="text-base">
-              I&apos;m a developer passionate about creating simple, effective solutions. I believe in clean code, 
+              Hi, I&apos;m Matthew, a developer passionate about creating simple, effective solutions. I believe in clean code, 
               thoughtful design, and building products that make a difference.
             </p>
             <p className="text-base">
