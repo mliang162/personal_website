@@ -5,149 +5,92 @@ import Image from 'next/image';
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('about');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [brokenImages, setBrokenImages] = useState<Set<number>>(new Set());
+  const [gallery, setGallery] = useState<
+    Array<{ src: string; alt: string; caption: string; id: number }>
+  >([]);
+
+  const handleImageError = (index: number) => {
+    setBrokenImages((prev) => {
+      const next = new Set(prev);
+      next.add(index);
+      return next;
+    });
+  };
 
   useEffect(() => {
-  const handleScroll = () => {
-    const sections = ['about', 'experience', 'projects', 'gallery'];
-    const scrollY = window.scrollY;
-    
-    let currentSection = 'about'; // Default
-    
-    for (const section of sections) {
-      const element = document.getElementById(section);
-      if (element) {
-        const { offsetTop } = element;
-        if (scrollY >= offsetTop - 300) {
+    const handleScroll = () => {
+      const sections = ['about', 'experience', 'projects', 'gallery'];
+      const scrollY = window.scrollY;
+      let currentSection = 'about';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element && scrollY >= element.offsetTop - 300) {
           currentSection = section;
         }
       }
-    }
-    
-    setActiveSection(currentSection);
-  };
+      setActiveSection(currentSection);
+    };
 
-  handleScroll(); // Run once on mount
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
     setSidebarOpen(false);
   };
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
-  const handleOverlayClick = () => {
-    setSidebarOpen(false);
-  };
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const handleOverlayClick = () => setSidebarOpen(false);
 
   // Experience data
   const experiences = [
-  {
-    title: "Software Engineering Intern",
-    company: "Amazon",
-    period: "2025",
-    description: "Streamlined catalog data corrections with a centralized dashboard",
-    icon: (
-      <Image 
-        src="/logos/amazon_fresh.png" 
-        alt="Amazon Fresh" 
-        width={24}
-        height={24}
-        className="w-6 h-6 object-contain"
-      />
-    ),
-    achievements: []
-  },
-  {
-    title: "Software Engineering Intern", 
-    company: "NYC DOT",
-    period: "2024",
-    description: "Developed green wave traffic optimization algorithms for Bx10, M10, and Si74 routes",
-    icon: (
-      <Image 
-        src="/logos/NYCDOT.svg.png" 
-        alt="NYC DOT" 
-        width={24}
-        height={24}
-        className="w-6 h-6 object-contain"
-      />
-    ),
-    achievements: []
-  },
-];
-
-  // Projects data
-  const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "Full-featured platform with user authentication, payment processing, and admin dashboard. Built for scalability and performance.",
-      tech: "React, Node.js, MongoDB, Stripe API",
-      links: [
-        { label: "View Live", href: "#" },
-        { label: "GitHub", href: "#" }
-      ]
+      title: "Software Engineering Intern",
+      company: "Amazon",
+      period: "2025",
+      description: "Streamlined catalog data corrections with a centralized dashboard",
+      icon: (
+        <Image 
+          src="/logos/amazon_fresh.png" 
+          alt="Amazon Fresh" 
+          width={24}
+          height={24}
+          className="w-6 h-6 object-contain"
+        />
+      ),
+      achievements: []
     },
     {
-      title: "Data Visualization Dashboard",
-      description: "Interactive dashboard for complex datasets with real-time updates. Features multiple chart types and customizable filters.",
-      tech: "Vue.js, D3.js, Python, FastAPI",
-      links: [
-        { label: "View Live", href: "#" },
-        { label: "GitHub", href: "#" }
-      ]
+      title: "Software Engineering Intern", 
+      company: "NYC DOT",
+      period: "2024",
+      description: "Developed green wave traffic optimization algorithms for Bx10, M10, and Si74 routes",
+      icon: (
+        <Image 
+          src="/logos/NYCDOT.svg.png" 
+          alt="NYC DOT" 
+          width={24}
+          height={24}
+          className="w-6 h-6 object-contain"
+        />
+      ),
+      achievements: []
     },
-    {
-      title: "Chat Application",
-      description: "Real-time messaging app with file sharing and group conversations. Includes message encryption and presence indicators.",
-      tech: "React, Socket.io, Express, PostgreSQL",
-      links: [
-        { label: "View Live", href: "#" },
-        { label: "GitHub", href: "#" }
-      ]
-    }
   ];
-  const gallery = [
-  {
-    
-    src: "/images/nature1.jpeg",
-    alt: "Mountain landscape",
-    caption: "Snoqualmie Pass"
-    
-  },
-  {
-    src: "/images/nature2.jpeg",
-    alt: "Another nature photo",
-    caption: "Lake Serene"
-  },
-  {
-    src: "/images/nature3.jpeg",
-    alt: "Another nature photo",
-    caption: "Mount Rainier"
-  },
-  {
-    src: "/images/mount_si.jpeg",
-    alt: "Another nature photo",
-    caption: "Mount Si Trail"
-  },
-  {
-    src: "/images/penn.jpeg",
-    alt: "Another nature photo",
-    caption: "Bushkill Falls"
-  },
-  {
-    src: "/images/cascades_1.jpeg",
-    alt: "Another nature photo",
-    caption: "North Cascades"
-  }
 
-]
+  // Projects
+  const projects = [
+    { title: "E-Commerce Platform", description: "...", tech: "React, Node.js", links: [] },
+    { title: "Data Visualization Dashboard", description: "...", tech: "Vue.js, D3.js", links: [] },
+    { title: "Chat Application", description: "...", tech: "React, Socket.io", links: [] }
+  ];
+
+  // Gallery
+
   // Navigation items
   const navItems = [
     { id: 'about', label: 'About' },
@@ -217,21 +160,14 @@ const Portfolio = () => {
           {/* Profile Picture */}
       <div className="flex-shrink-0">
         <div className="w-32 h-32 bg-gray-200 rounded-lg overflow-hidden">
-          <Image
-            src="/images/profile.jpeg"
-            alt="Matthew Liang"
-            width={128}
-            height={128}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const nextElement = target.nextElementSibling as HTMLElement;
-              if (nextElement) {
-                nextElement.style.display = 'flex';
-              }
-            }}
-          />
+           <Image
+      src="/images/profiles.jpeg"
+      alt="Matthew Liang"
+      width={128}
+      height={128}
+      className="w-full h-full object-cover"
+      priority
+    />
         <div 
           className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 text-2xl font-medium"
           style={{ display: 'none' }}
@@ -324,51 +260,55 @@ const Portfolio = () => {
     
 
       {/* Gallery Section */}
-        <section id="gallery" className="px-8 md:px-16 py-24 max-w-6xl">
-          <h2 className="text-3xl font-light text-black mb-16 tracking-tight">Gallery</h2>
+       <section id="gallery" className="px-8 md:px-16 py-24 max-w-6xl">
+  <h2 className="text-3xl font-light text-black mb-16 tracking-tight">Gallery</h2>
 
-          {gallery.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {gallery.map((photo, index) => (
-                <div 
-                  key={index} 
-                  className="group relative overflow-hidden bg-gray-100 aspect-square cursor-pointer transition-transform duration-300 hover:scale-105 rounded-lg"
-                >
-                  {/* Relative wrapper required for `fill` */}
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw,
-                            (max-width: 1200px) 50vw,
-                            33vw"
-                      className="object-cover transition-opacity duration-300 group-hover:opacity-90"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Fallback when image fails */}
-                  <div className="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-500 text-sm hidden">
-                    Image not found
-                  </div>
-
-                  {/* Caption overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/60 to-transparent">
-                    <p className="text-sm font-medium">{photo.caption}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20">
-              <div className="bg-gray-100 rounded-lg p-12 max-w-md mx-auto">
-                <p className="text-gray-500 text-sm mb-4">No photos in gallery yet</p>
-                <p className="text-gray-400 text-xs">Add your nature photos to the gallery array to display them here.</p>
+  {gallery.length > 0 ? (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {gallery.map((photo, index) => (
+        <div
+          key={index}
+          className="group relative overflow-hidden bg-gray-100 aspect-square cursor-pointer transition-transform duration-300 hover:scale-105 rounded-lg"
+        >
+          <div className="relative w-full h-full">
+            {!brokenImages.has(index) ? (
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                sizes="(max-width: 768px) 100vw,
+                       (max-width: 1200px) 50vw,
+                       33vw"
+                className="object-cover transition-opacity duration-300 group-hover:opacity-90"
+                loading="lazy"
+                onError={() => handleImageError(index)}
+              />
+            ) : (
+              <div className="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-500 text-sm">
+                Image not found
               </div>
-            </div>
-          )}
+            )}
+          </div>
+
+          {/* Caption overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/60 to-transparent">
+            <p className="text-sm font-medium">{photo.caption}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className="text-center py-20">
+      <div className="bg-gray-100 rounded-lg p-12 max-w-md mx-auto">
+        <p className="text-gray-500 text-sm mb-4">No photos in gallery yet</p>
+        <p className="text-gray-400 text-xs">
+          Add your nature photos to the gallery array to display them here.
+        </p>
+      </div>
+    </div>
+  )}
 </section>
+
 
 
         </main>
