@@ -275,7 +275,6 @@ const Portfolio = () => {
               <div className="bg-gray-100 rounded-lg p-12 max-w-md mx-auto">
                 <p className="text-gray-500 text-sm mb-4">No projects listed yet</p>
                 <p className="text-gray-400 text-xs">
-                  Add your projects to the projects array to display them here.
                 </p>
               </div>
             </div>
